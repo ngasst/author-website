@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gaston Ndanyuzwe <ndanyuzwe@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node ./node_modules/ts-node/dist/bin ./index",
+    "start": "node ./build",
+    "build": "rm -rf ./build && ./node_modules/typescript/bin/tsc"
+  },
+  "dependencies": {
+    "hapi": "^17.4.0",
+    "mongodb": "^3.1.0-beta4",
+    "typescript": "^2.8.3"
+  },
+  "devDependencies": {
+    "@types/hapi": "^17.0.12",
+    "@types/mongodb": "^3.0.18",
+    "ts-node": "^6.0.3"
+  }
+}

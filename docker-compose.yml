@@ -1,0 +1,44 @@
+version: "2"
+services:
+  mongo:
+    image: mongo:3.7
+    ports: 
+      - 27017:27017
+    environment:
+      - PRODUCTION=false
+    networks: 
+      - backend
+  api:
+    build:
+      context: ./api
+    ports:
+      - 4000:3000
+    environment:
+      - PRODUCTION=false
+      - HOST=0.0.0.0
+    volumes:
+      - ./api:/usr/code
+    networks: 
+      - backend
+      - frontend
+    command:  tail -f /dev/null
+  web:
+    build:
+      context: ./web
+    ports:
+      - "8080:3000"
+    volumes:
+      - ./web:/usr/code/ # modified here to take into account the new app path
+    depends_on:
+      - api
+    environment:
+      - HOST=0.0.0.0
+      - PRODUCTION=false
+    networks: 
+      - frontend
+    command:  tail -f /dev/null
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
