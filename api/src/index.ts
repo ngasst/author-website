@@ -1,16 +1,19 @@
-import {Server} from 'hapi';
+import { Server } from 'hapi';
 import * as hapi from 'hapi';
+import chalk from 'chalk';
 
 const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
-const server: Server = new Server({host, port});
+const server: Server = new Server({ host, port });
 
-
-server.start()
-.then((st) => {
-    console.log(st);
-})
-.catch(err => {
+server
+  .start()
+  .then(() => {
+    console.log(
+      chalk.green(`Server started and listening on ${host} on port ${port}`)
+    );
+  })
+  .catch(err => {
     console.log(err);
-});
+  });
