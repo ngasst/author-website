@@ -1,19 +1,26 @@
-import { Schema, Types } from 'mongoose';
-import { ObjectID } from 'bson';
+import { Schema } from 'mongoose';
 
-export default new Schema({
-  labels: {
-    english: {
-      type: String,
-      required: true,
+export default new Schema(
+  {
+    labels: {
+      english: {
+        type: String,
+        required: true,
+      },
+      french: {
+        type: String,
+        required: true,
+      },
     },
-    french: {
+    color: {
       type: String,
       required: true,
     },
   },
-  color: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: {
+      createdAt: 'created',
+      updatedAt: 'updated',
+    },
+  }
+);

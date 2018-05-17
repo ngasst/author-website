@@ -1,1 +1,1 @@
-export default class AuthController {}
+export default class SubCategoryController {}

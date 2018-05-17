@@ -1,8 +1,8 @@
 import { Server } from 'hapi';
-import UsersRoutes from './users';
-import PostsRoutes from './posts';
+import AuthorsRoutes from './authors.route';
+import PostsRoutes from './posts.route';
 
 export default function(server: Server): Server {
-  server.route([UsersRoutes, PostsRoutes]);
+  server.route([...AuthorsRoutes, ...PostsRoutes]);
   return server;
 }
