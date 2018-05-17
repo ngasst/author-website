@@ -6,3 +6,15 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {};
+</script>
+
+<style lang="stylus" scoped>
+#author-page
+  padding 0 2rem
+  margin 3rem
+  background-color white
+  min-height 90%
+</style>

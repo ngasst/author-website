@@ -4,7 +4,9 @@ import chalk from 'chalk';
 import { ICategory, ISubCategory } from '../../src/models/interfaces';
 import { Document } from 'mongoose';
 
-export default async function subcats() {
+export default async function seed() {
+  const cname = SubCategoryModel.collection.name;
+  console.log(chalk.magenta(`Seeding ${cname}...`));
   const subcategories = loadSubCategories();
 
   const proms = subcategories.map(async sub => {
@@ -26,5 +28,6 @@ export default async function subcats() {
   }
 
   const docs = await Promise.all(proms);
-  console.log(chalk.blue(`Inserted ${docs.length} subcategories`));
+  console.log(chalk.blue(`Inserted ${docs.length} ${cname}!`));
+  return cname;
 }

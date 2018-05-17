@@ -1,5 +1,4 @@
 import chalk from 'chalk';
-import { Connection } from 'mongoose';
 import * as models from '../src/models';
 import * as Seeder from './data';
 const DB_NAME = 'dany-zuwen';
@@ -9,65 +8,34 @@ const DB_URI =
     ? `mongodb://mongo/${DB_NAME}`
     : `mongodb://localhost:27017/${DB_NAME}`);
 
-export async function seedAll(): Promise<void> {
-  await Seeder.tags();
-  await Seeder.categories();
-  await Seeder.authors();
-  await Seeder.subcategories();
+export async function seedAll(): Promise<string[]> {
+  const seeded: string[] = [];
+  const seeds: any = Seeder;
+  for (const key in seeds) {
+    const res = await seeds[key]();
+    seeded.push(res);
+  }
+  return seeded;
 }
 
-export async function deleteAll(conn: Connection): Promise<void> {
-  conn.db
-    .listCollections({ name: models.PostModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('posts');
-        console.log(chalk.blue('Successfully emptied "posts" collection!'));
-      }
-    });
-
-  conn.db
-    .listCollections({ name: models.CategoryModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('categories');
-        console.log(
-          chalk.blue('Successfully emptied "categories" collection!')
-        );
-      }
-    });
-  conn.db
-    .listCollections({ name: models.CommentModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('comments');
-        console.log(chalk.blue('Successfully emptied "comments" collection!'));
-      }
-    });
-  conn.db
-    .listCollections({ name: models.SubCategoryModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('subcategories');
-        console.log(
-          chalk.blue('Successfully emptied "subcategories" collection!')
-        );
-      }
-    });
-  conn.db
-    .listCollections({ name: models.TagModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('tags');
-        console.log(chalk.blue('Successfully emptied "tags" collection!'));
-      }
-    });
-  conn.db
-    .listCollections({ name: models.AuthorModel.name })
-    .next(async (err, info) => {
-      if (info) {
-        await conn.db.dropCollection('authors');
-        console.log(chalk.blue('Successfully emptied "authors" collection!'));
-      }
-    });
+export async function deleteAll(): Promise<void> {
+  const mods: any = {
+    tags: models.TagModel,
+    cats: models.CategoryModel,
+    auths: models.AuthorModel,
+    subs: models.SubCategoryModel,
+    comms: models.CommentModel,
+    posts: models.PostModel,
+  };
+  try {
+    for (const key in mods) {
+      const model: any = mods[key] as any;
+      console.log(chalk.gray(`Dropping ${model.collection.name}...`));
+      model.collection.drop();
+      console.log(chalk.blue(`Successfully dropped ${model.collection.name}!`));
+    }
+  } catch (error) {
+    console.log(chalk.red('An error occured while emptying database!'));
+    console.error(error);
+  }
 }

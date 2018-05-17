@@ -1,6 +1,7 @@
 import { Schema, SchemaTypes } from 'mongoose';
+import { createSlug } from 'speakingurl';
 
-export default new Schema(
+const schema: any = new Schema(
   {
     title: {
       type: String,
@@ -47,6 +48,11 @@ export default new Schema(
         required: false,
         default: 0,
       },
+      google: {
+        type: Number,
+        required: false,
+        default: 0,
+      },
     },
     slug: {
       type: String,
@@ -88,3 +94,17 @@ export default new Schema(
     },
   }
 );
+
+schema.pre('validate', function() {
+  const slugify = createSlug({
+    lang: 'en',
+    symbols: true,
+    maintainCase: false,
+    truncate: 100,
+  });
+  if (this.isNew) {
+    this.slug = slugify(this.title);
+  }
+});
+
+export default schema;

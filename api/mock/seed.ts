@@ -10,15 +10,17 @@ const DB_URI =
     : `mongodb://localhost:27017/${DB_NAME}`);
 
 connect(DB_URI)
-  .then(async db => {
+  .then(async () => {
     console.log(chalk.gray('Emptying database...'));
-    await deleteAll(db.connection);
+    await deleteAll();
     console.log(chalk.green('Successfully emptied database'));
     return;
   })
   .then(async () => {
     console.log(chalk.gray('Seeding collections...'));
-    await seedAll();
+    const seeded = await seedAll();
+    console.log(chalk.green('Successfully seeded database'));
+    console.log(chalk.redBright(`----> ${seeded.join(', ')} <----`));
     process.exit(0);
   })
   .catch(err => {

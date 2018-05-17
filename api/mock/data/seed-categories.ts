@@ -5,6 +5,8 @@ import { CategoryModel } from '../../src/models';
 import { ICategory } from '../../src/models/interfaces';
 
 export default async function seed() {
+  const cname = CategoryModel.collection.name;
+  console.log(chalk.magenta(`Seeding ${cname}...`));
   const categories = loadCategories();
   const proms: Promise<Document>[] = [];
   for (const cat of categories) {
@@ -12,5 +14,6 @@ export default async function seed() {
     proms.push(category.save());
   }
   const docs: Document[] = await Promise.all(proms);
-  console.log(chalk.blue(`Inserted ${docs.length} categories`));
+  console.log(chalk.blue(`Inserted ${docs.length} ${cname}!`));
+  return cname;
 }

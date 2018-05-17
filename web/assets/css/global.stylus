@@ -1,0 +1,14 @@
+*
+  box-sizing border-box
+
+html
+  height 100%
+  body
+    font-family: 'Open Sans', sans-serif;
+    background-color: #2C2C2C;
+    margin: 0;
+    height 100%;
+    #__nuxt
+      height 100%
+      #__layout
+        height 100%

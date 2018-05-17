@@ -30,12 +30,12 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#FFFFFF' },
+  loading: { color: '#333333' },
 
   /*
   ** Global CSS
   */
-  css: [],
+  css: ['@/assets/css/global.stylus'],
 
   /*
   ** Plugins to load before mounting the App

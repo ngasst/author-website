@@ -8,7 +8,7 @@ const chance = new Chance();
 const fake = Faker();
 
 export default function authors() {
-  const authors: IAuthor[] = [];
+  const authors: any[] = [];
 
   for (const n of range(50)) {
     authors.push({
@@ -23,11 +23,28 @@ export default function authors() {
         website: chance.url(),
       },
       photos: {
-        thumb: fake.internet.image(600, 200),
-        large: fake.internet.image(1200, 500),
+        thumb: fake.internet.image(100, 100),
+        large: fake.internet.image(500, 800),
       },
     });
   }
+
+  authors.push({
+    name: {
+      last: 'Zuwen',
+      first: 'Dany',
+      display: 'Dany G. Zuwen',
+    },
+    social: {
+      website: 'https://www.danyzuwen.com',
+      twitter: '@DanyZuwen',
+      facebook: 'https://www.facebook.com/danyzuwen',
+    },
+    photos: {
+      thumb: fake.internet.image(100, 100),
+      large: fake.internet.image(500, 800),
+    },
+  });
 
   return authors;
 }
