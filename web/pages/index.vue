@@ -5,32 +5,18 @@
 </template>
 
 <script>
-import PostPreview from "@/components/Blog/PostPreview";
+import PostPreview from '@/components/Blog/PostPreview';
+import { mapState } from 'vuex';
 export default {
   components: {
-    PostPreview
+    PostPreview,
   },
-  data() {
-    return {
-      posts: [
-        {
-          title: 'A New Beginning',
-          summary: 'This is gonna be great.',
-          thumbnail: 'https://placeimg.com/600/200/any',
-          id: '1',
-          slug: 'a-new-beginning'
-        },
-        {
-          title: 'A Second Beginning',
-          summary: 'This is gonna be great.',
-          thumbnail: 'https://placeimg.com/600/200/any',
-          id: '2',
-          slug: 'a-second-beginning'
-        },
-      ]
-    }
-  }
-}
+  computed: {
+    posts() {
+      return this.$store.getters['posts/loadedPosts'];
+    },
+  },
+};
 </script>
 
 <style lang="stylus">
