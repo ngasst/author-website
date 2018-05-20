@@ -41,16 +41,20 @@ async function populate(posts: any): Promise<Document[]> {
     } else {
       author = await AuthorModel.findOne({});
     }
+
+    const autid = author.id || author._id;
+    const catid = cat.id || cat._id;
+    const commids = comms.map(c => c.id || c._id);
+    const subids = subcats.map(s => s.id || s._id);
+    const tagids = tags.map(t => t.id || t._id);
+
     populated.push({
       ...p,
-      tags: tags.map(t => t.id),
-      category: cat.id,
-      comments: comms.map(c => c.id),
-      author: author.id,
-      subCategories: chance.pick(
-        subcats.map(s => s.id),
-        random(1, subcats.length)
-      ),
+      tags: tagids,
+      category: catid,
+      comments: commids,
+      author: autid,
+      subCategories: chance.pick(subids, random(1, subcats.length)),
     });
   }
 

@@ -24,6 +24,7 @@ export default {};
 </script>
 
 <style scoped lang="stylus">
+@import "../../assets/css/colors"
 dsize = 4.5rem;
 zsize = 5rem;
 
@@ -39,7 +40,8 @@ zsize = 5rem;
   padding-bottom: 2.5em;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  background-color: #2C2C2C;
+  background-color: themes[theme].background;
+  background-image url('~/assets/images/black-linen.png')
 
   .author-name {
     position: relative;
@@ -52,7 +54,7 @@ zsize = 5rem;
 
     .first-name {
       font-weight: 600;
-      color: #666;
+      color:themes[theme].medium;
       font-size: dsize;
       line-height: dsize - 0.8rem;
       letter-spacing: 4px;
@@ -61,7 +63,7 @@ zsize = 5rem;
     .last-name {
       letter-spacing: -1px;
       font-weight: 800;
-      color: #444;
+      color:themes[theme].dark;
       font-size: zsize;
       line-height: zsize - 1.2rem;
       margin: 0;
@@ -76,7 +78,7 @@ zsize = 5rem;
     display: flex;
     font-weight: 600;
     font-size: 1.2rem;
-    color: #7C8387;
+    color: themes[theme].medium;
 
     .lang-en {
       margin-right: 0.2em;
@@ -90,27 +92,27 @@ zsize = 5rem;
       align-items: flex-end;
 
       a {
-        background-color: #444;
-        color: #999;
+        background-color: themes[theme].dark;
+        color: themes[theme].text;
         text-decoration: none;
         text-transform: uppercase;
         font-weight: 600;
         padding: 0.3em;
         min-width: 100px;
         text-align: center;
-        border-bottom solid 2px #444
+        border-bottom: solid 2px themes[theme].dark
         transition border-bottom 600ms ease-in-out 200ms
 
         &:hover, &:active {
-          background-color: #888;
-          color: white;
+          background-color: themes[theme].medium;
+          color: themes[theme].text;
         }
       }
 
       .nuxt-link-exact-active {
-        background-color: #888;
-        color: white;
-        border-bottom solid 2px white
+        background-color: themes[theme].medium;
+        color: themes[theme].text;
+        border-bottom: solid 2px themes[theme].accent
       }
     }
   }

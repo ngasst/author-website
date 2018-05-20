@@ -1,14 +1,23 @@
+@import "./colors.styl"
+
 *
   box-sizing border-box
 
 html
   height 100%
   body
-    font-family: 'Open Sans', sans-serif;
-    background-color: #2C2C2C;
+    font-family: 'Open Sans', sans-serif
+    background-color: themes[theme].background;
+    background-image url('~/assets/images/az-subtle.png')
     margin: 0;
     height 100%;
+    color: themes[theme].text
     #__nuxt
       height 100%
+      .nuxt-progress
+        z-index 100
+        background-color: themes[theme].accent
       #__layout
         height 100%
+        .post-body
+          font-size 1.3rem

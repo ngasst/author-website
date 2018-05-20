@@ -12,6 +12,7 @@ const schema: any = new Schema(
     author: {
       type: SchemaTypes.ObjectId,
       required: true,
+      ref: 'Author',
     },
     location: {
       type: String,
@@ -69,7 +70,7 @@ const schema: any = new Schema(
       {
         type: SchemaTypes.ObjectId,
         required: true,
-        ref: 'SubCategory',
+        ref: 'Subcategory',
       },
     ],
     comments: [

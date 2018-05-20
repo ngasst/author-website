@@ -27,7 +27,7 @@ export interface ISubCategory extends Document {
   updated?: string | Date;
 }
 
-export interface IPost extends Document {
+export interface IPost extends Partial<Document> {
   title?: string;
   author?: IAuthor;
   location?: string;
@@ -42,6 +42,7 @@ export interface IPost extends Document {
   tags?: ITag[];
   created?: string | Date;
   updated?: string | Date;
+  content?: string;
 }
 
 export interface ISocialSharesCount {

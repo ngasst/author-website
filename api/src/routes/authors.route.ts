@@ -7,6 +7,11 @@ const routes: ServerRoute[] = [
     path: '/authors',
     handler: AuthorsController.index,
   },
+  {
+    method: 'GET',
+    path: '/authors/bios/dany',
+    handler: AuthorsController.dany,
+  },
 ];
 
 export default routes;

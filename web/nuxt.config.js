@@ -22,7 +22,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Montserrat:600,700,800,900|Open+Sans:400,400i,700,800',
+          'https://fonts.googleapis.com/css?family=Alegreya:400,400i,500,500i,700,700i|Montserrat:600,700,800|Open+Sans:400,400i,700,800',
       },
     ],
   },
@@ -30,7 +30,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#333333' },
+  loading: { color: '#FFFFFF' },
 
   /*
   ** Global CSS
@@ -40,7 +40,11 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: ['~/plugins/i18n.js'],
+
+  router: {
+    middleware: 'i18n',
+  },
 
   /*
   ** Nuxt.js modules
@@ -54,6 +58,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL: 'http://127.0.0.1:4000',
   },
 
   /*

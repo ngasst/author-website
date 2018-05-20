@@ -8,7 +8,7 @@ export const mutations = {
   [types.LOAD_POSTS](state, posts) {
     Object.assign(state, { loaded: posts });
   },
-  [types.LOAD_SINGLE_POST](state, posts) {
+  [types.LOAD_SINGLE_POST](state, post) {
     Object.assign(state, { current: post });
   },
 };
@@ -22,4 +22,5 @@ export const actions = {
 };
 export const getters = {
   loadedPosts: state => state.loaded,
+  post: state => state.current,
 };

@@ -7,6 +7,11 @@ const routes: ServerRoute[] = [
     path: '/posts',
     handler: PostsController.index,
   },
+  {
+    method: 'GET',
+    path: '/post/{slug}',
+    handler: PostsController.single,
+  },
 ];
 
 export default routes;

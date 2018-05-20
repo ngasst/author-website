@@ -28,7 +28,7 @@ export default function loadPosts() {
     'transport',
   ];
 
-  for (const num of range(0, 500)) {
+  for (const num of range(0, 100)) {
     const word = randwds({ min: 2, max: 3 }).join(',');
     const img = `https://loremflickr.com`;
     const t = randwds({ min: 4, max: 12, join: ' ' });
